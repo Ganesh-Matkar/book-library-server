@@ -37,7 +37,7 @@ const getBooks = async (req, res) => {
                     },
                     {
                         "role": "user",
-                        "content": `${question}. Respond with a JSON array of books: [{title, author, genre, rating, coverImage, publishedDate}]`
+                        "content": `${question}. Respond with a JSON array of {books: [{title, author, genre, rating, coverImage, publishedDate}]}`
                     }]
             })
             const recommendations = JSON.parse(response.choices[0].message.content.trim());
