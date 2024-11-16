@@ -21,7 +21,7 @@ const getBooks = async (req, res) => {
             const prompt = `You are a book recommendation assistant. Based on the following book data, provide personalized book recommendations:${bookContext}`;
 
             const response = await openai.chat.completions.create({
-                model: "gpt-4o-mini",
+                model: "gpt-3.5-turbo",
                 temperature: 1,
                 max_tokens: 4096,
                 top_p: 1,
@@ -33,21 +33,11 @@ const getBooks = async (req, res) => {
                 messages: [
                     {
                         "role": "system",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": prompt
-                            }
-                        ]
+                        "content": prompt
                     },
                     {
                         "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": `${question}, response should be books array containing json in format title, auther, genre, rating, coverImage, publishedDate`
-                            }
-                        ]
+                        "content": `${question}. Respond with a JSON array of books: [{title, author, genre, rating, coverImage, publishedDate}]`
                     }]
             })
             const recommendations = JSON.parse(response.choices[0].message.content.trim());
