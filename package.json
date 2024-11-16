@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "build": "echo 'Skipping build step as this is a backend-only Node.js app'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
